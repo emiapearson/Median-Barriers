@@ -7,6 +7,7 @@ output: html_notebook
 knitr::opts_knit$set(root.dir = "~/Documents/GitHub/Median-Barriers/")
 
 library(tidyverse)
+library(lmtest)
 ```
 
 ```{r Read in dataframes}
@@ -45,6 +46,8 @@ site_full <- bind_rows(random_site_clean, roadkill_site_clean)
 head(site_full)
 ```
 
+
+
 ```{r Median type tables}
 #Median type table with only roadkill sites
 table(site_full$MedianType[site_full$roadkill_pa == 1])
@@ -54,3 +57,17 @@ table(site_full$MedianType)
 
 #There appears to be many different types of medians with multiple descriptions. Is there redundancy? vegetative, gravel == gravel, vegetative? 
 ```
+
+```{r Filter for MedianTypes in roadkill data}
+unique(random_site_clean$MedianType)
+#create a vector containing the values for MedianType in the roadkill df 
+median_filter <- unique(roadkill_site_clean$MedianType)
+
+site_full_filter <- site_full %>%
+#filter only rows that have the same MedianType as the 
+  filter(MedianType %in% c(median_filter, "concrete, vegetative"))
+#change concrete, vegetative to equal vegetative, concrete
+site_full_filter$MedianType[site_full_filter$MedianType == "concrete, vegetative"] <- "vegetative, concrete"
+```
+
+

@@ -50,6 +50,13 @@ D2.random <- subset(District2.random, select=c(cid,
                                                RoadsideBarrier))
 
 D2.random <- mutate(animal=0) #HELP need to add column to random points to show no roadkill
+
+## EMILY- mutate needs to be usedin conjuction with %>%. You can add new column to a df without mutate like this:
+## D2.random$roadkill_pa <- 0 
+## This assigns a value of 0 to a new column in the D2.random called animal 
+## OR if you want to use mutate: 
+## D2.random <- D2.random %>%
+##                 mutate(roadkill_pa = 0)
 ```
 
 

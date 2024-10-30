@@ -1764,51 +1764,122 @@ include random –&gt; are they correlated</p>
 <p>how to make a model with only presence data (no absence)</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxua25pdHI6Om9wdHNfa25pdCRzZXQocm9vdC5kaXIgPSBcIkM6L1Jfc3R1ZGlvL1Jlc2VhcmNoL01lZGlhbi1CYXJyaWVyc1wiKVxuZ2V0d2QoKVxuYGBgIn0= -->
-<pre class="r"><code>knitr::opts_knit$set(root.dir = &quot;C:/R_studio/Research/Median-Barriers&quot;)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxua25pdHI6Om9wdHNfa25pdCRzZXQocm9vdC5kaXIgPSBcXEM6L1Jfc3R1ZGlvL1Jlc2VhcmNoL01lZGlhbi1CYXJyaWVyc1xcKVxuZ2V0d2QoKVxuYGBgXG5gYGAifQ== -->
+<pre class="r"><code>```r
+knitr::opts_knit$set(root.dir = \C:/R_studio/Research/Median-Barriers\)
 getwd()</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiQzovUl9zdHVkaW8vUmVzZWFyY2gvTWVkaWFuLUJhcnJpZXJzXCJcbiJ9 -->
-<pre><code>[1] &quot;C:/R_studio/Research/Median-Barriers&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5saWJyYXJ5KGNvbmZsaWN0ZWQpXG5jb25mbGljdF9wcmVmZXIoXCJzZWxlY3RcIiwgXCJkcGx5clwiKVxuYGBgIn0= -->
-<pre class="r"><code>library(tidyverse)
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-output-begin eyJkYXRhIjoiWzFdIFxcQzovUl9zdHVkaW8vUmVzZWFyY2gvTWVkaWFuLUJhcnJpZXJzXFxcbiJ9 --&gt;
+</code></pre>
+<p>[1] :/R_studio/Research/Median-Barriers<br />
+</p>
+<pre><code>
+
+
+&lt;!-- rnb-output-end --&gt;
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5saWJyYXJ5KGNvbmZsaWN0ZWQpXG5jb25mbGljdF9wcmVmZXIoXFxzZWxlY3RcXCwgXFxkcGx5clxcKVxuYGBgXG5gYGAifQ== --&gt;
+
+```r
+```r
+library(tidyverse)
 library(conflicted)
-conflict_prefer(&quot;select&quot;, &quot;dplyr&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiW2NvbmZsaWN0ZWRdIFdpbGwgcHJlZmVyIGRwbHlyOjpzZWxlY3Qgb3ZlciBhbnkgb3RoZXIgcGFja2FnZS5cbiJ9 -->
-<pre><code>[conflicted] Will prefer dplyr::select over any other package.</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY29uZmxpY3RfcHJlZmVyKFwiZmlsdGVyXCIsIFwiZHBseXJcIilcbmBgYCJ9 -->
-<pre class="r"><code>conflict_prefer(&quot;filter&quot;, &quot;dplyr&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiW2NvbmZsaWN0ZWRdIFdpbGwgcHJlZmVyIGRwbHlyOjpmaWx0ZXIgb3ZlciBhbnkgb3RoZXIgcGFja2FnZS5cbiJ9 -->
-<pre><code>[conflicted] Will prefer dplyr::filter over any other package.</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY29uZmxpY3RfcHJlZmVyKFwic3VtbWFyaXplXCIsIFwiZHBseXJcIilcbmBgYCJ9 -->
-<pre class="r"><code>conflict_prefer(&quot;summarize&quot;, &quot;dplyr&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiW2NvbmZsaWN0ZWRdIFdpbGwgcHJlZmVyIGRwbHlyOjpzdW1tYXJpemUgb3ZlciBhbnkgb3RoZXIgcGFja2FnZS5cbiJ9 -->
-<pre><code>[conflicted] Will prefer dplyr::summarize over any other package.</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuP2dyb3VwX2J5XG5gYGAifQ== -->
-<pre class="r"><code>?group_by</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuRGlzdHJpY3QyLnNxdWlycmVscyA8LSByZWFkLmNzdihcIkQyX3NxdWlycmVsX2hpdHMuY3N2XCIpXG5EaXN0cmljdDIucmFuZG9tIDwtIHJlYWQuY3N2KFwiRDJfcmFuZG9tX3NpdGVzLmNzdlwiKVxuYGBgIn0= -->
-<pre class="r"><code>District2.squirrels &lt;- read.csv(&quot;D2_squirrel_hits.csv&quot;)
-District2.random &lt;- read.csv(&quot;D2_random_sites.csv&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Make the data frames look beter by only using necessary data</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuRDIuc3F1aXJyZWwucm9hZCA8LSBzdWJzZXQoRGlzdHJpY3QyLnNxdWlycmVscywgc2VsZWN0PWMobmlkLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgYW5pbWFsLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjb25kaXRpb24sIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNyZWF0ZWRfZGEsIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIE1lZGlhblR5cGUsIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFNlY29uZGFyeUF0dHJpYnV0ZSwgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgTWVkaWFuV2lkdGgsIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFJvYWRzaWRlQmFycmllcikpXG5EMi5yYW5kb20gPC0gc3Vic2V0KERpc3RyaWN0Mi5yYW5kb20sIHNlbGVjdD1jKGNpZCxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgTWVkaWFuVHlwZSxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgU2Vjb25kYXJ5QXR0cmlidXRlLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgTWVkaWFuV2lkdGgsIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBSb2Fkc2lkZUJhcnJpZXIpKVxuXG5EMi5yYW5kb20gPC0gbXV0YXRlKGFuaW1hbD0wKSAjbmVlZCB0byBhZGQgY29sdW1uIHRvIHJhbmRvbSBwb2ludHMgdG8gc2hvdyBubyByb2Fka2lsbFxuYGBgIn0= -->
-<pre class="r"><code>D2.squirrel.road &lt;- subset(District2.squirrels, select=c(nid,
+conflict_prefer(\select\, \dplyr\)</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-output-begin eyJkYXRhIjoiW2NvbmZsaWN0ZWRdIFdpbGwgcHJlZmVyIGRwbHlyOjpzZWxlY3Qgb3ZlciBhbnkgb3RoZXIgcGFja2FnZS5cbiJ9 --&gt;
+</code></pre>
+<p>[conflicted] Will prefer dplyr::select over any other package.</p>
+<pre><code>
+
+
+&lt;!-- rnb-output-end --&gt;
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuY29uZmxpY3RfcHJlZmVyKFxcZmlsdGVyXFwsIFxcZHBseXJcXClcbmBgYFxuYGBgIn0= --&gt;
+
+```r
+```r
+conflict_prefer(\filter\, \dplyr\)</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-output-begin eyJkYXRhIjoiW2NvbmZsaWN0ZWRdIFdpbGwgcHJlZmVyIGRwbHlyOjpmaWx0ZXIgb3ZlciBhbnkgb3RoZXIgcGFja2FnZS5cbiJ9 --&gt;
+</code></pre>
+<p>[conflicted] Will prefer dplyr::filter over any other package.</p>
+<pre><code>
+
+
+&lt;!-- rnb-output-end --&gt;
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuY29uZmxpY3RfcHJlZmVyKFxcc3VtbWFyaXplXFwsIFxcZHBseXJcXClcbmBgYFxuYGBgIn0= --&gt;
+
+```r
+```r
+conflict_prefer(\summarize\, \dplyr\)</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-output-begin eyJkYXRhIjoiW2NvbmZsaWN0ZWRdIFdpbGwgcHJlZmVyIGRwbHlyOjpzdW1tYXJpemUgb3ZlciBhbnkgb3RoZXIgcGFja2FnZS5cbiJ9 --&gt;
+</code></pre>
+<p>[conflicted] Will prefer dplyr::summarize over any other package.</p>
+<pre><code>
+
+
+&lt;!-- rnb-output-end --&gt;
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuP2dyb3VwX2J5XG5gYGBcbmBgYCJ9 --&gt;
+
+```r
+```r
+?group_by</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuRGlzdHJpY3QyLnNxdWlycmVscyA8LSByZWFkLmNzdihcXEQyX3NxdWlycmVsX2hpdHMuY3N2XFwpXG5EaXN0cmljdDIucmFuZG9tIDwtIHJlYWQuY3N2KFxcRDJfcmFuZG9tX3NpdGVzLmNzdlxcKVxuYGBgXG5gYGAifQ== --&gt;
+
+```r
+```r
+District2.squirrels &lt;- read.csv(\D2_squirrel_hits.csv\)
+District2.random &lt;- read.csv(\D2_random_sites.csv\)</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+
+Make the data frames look beter by only using necessary data
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuRDIuc3F1aXJyZWwucm9hZCA8LSBzdWJzZXQoRGlzdHJpY3QyLnNxdWlycmVscywgc2VsZWN0PWMobmlkLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgYW5pbWFsLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjb25kaXRpb24sIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNyZWF0ZWRfZGEsIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIE1lZGlhblR5cGUsIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFNlY29uZGFyeUF0dHJpYnV0ZSwgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgTWVkaWFuV2lkdGgsIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFJvYWRzaWRlQmFycmllcikpXG5EMi5yYW5kb20gPC0gc3Vic2V0KERpc3RyaWN0Mi5yYW5kb20sIHNlbGVjdD1jKGNpZCxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgTWVkaWFuVHlwZSxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgU2Vjb25kYXJ5QXR0cmlidXRlLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgTWVkaWFuV2lkdGgsIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBSb2Fkc2lkZUJhcnJpZXIpKVxuXG5EMi5yYW5kb20gPC0gbXV0YXRlKGFuaW1hbD0wKSAjbmVlZCB0byBhZGQgY29sdW1uIHRvIHJhbmRvbSBwb2ludHMgdG8gc2hvdyBubyByb2Fka2lsbFxuYGBgXG5gYGAifQ== --&gt;
+
+```r
+```r
+D2.squirrel.road &lt;- subset(District2.squirrels, select=c(nid,
                                                          animal, 
                                                           condition, 
                                                           created_da, 
@@ -1823,38 +1894,71 @@ D2.random &lt;- subset(District2.random, select=c(cid,
                                                RoadsideBarrier))
 
 D2.random &lt;- mutate(animal=0) #need to add column to random points to show no roadkill</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gVXNlTWV0aG9kKFwibXV0YXRlXCIpIDogXG4gIG5vIGFwcGxpY2FibGUgbWV0aG9kIGZvciAnbXV0YXRlJyBhcHBsaWVkIHRvIGFuIG9iamVjdCBvZiBjbGFzcyBcImMoJ2RvdWJsZScsICdudW1lcmljJylcIlxuIn0= -->
-<pre><code>Error in UseMethod(&quot;mutate&quot;) : 
-  no applicable method for &#39;mutate&#39; applied to an object of class &quot;c(&#39;double&#39;, &#39;numeric&#39;)&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>TO DO: make table that shows totals for number of roadkill for every
-median type compared against if it was a roadkill point or simulated
-point</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI2NvbGxhcHNlKG51bS5SSyB+IE1lZGlhblR5cGUgKVxuI21ha2UgY29tYmluZWQgZGF0YSBmcmFtZSBjYWxsZWQgXCJEMi5zcXVpcnJlbC5jb21cIlxuYGBgIn0= -->
-<pre class="r"><code>#collapse(num.RK ~ MedianType )
-#make combined data frame called &quot;D2.squirrel.com&quot;</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>TO DO</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubTEuRDIuc3F1aXJyZWwgPC1nbG0obnVtLlJLIH4gTWVkaWFuVHlwZSxcbiAgICAgICAgICAgICAgICAgICAgIGRhdGEgPSBEMi5zcXVpcnJlbC5jb20sXG4gICAgICAgICAgICAgICAgICAgICBmYW1pbHkgPSBwb2lzc29uKGxpbmsgPSBcImxvZ1wiKSlcblxuYGBgIn0= -->
-<pre class="r"><code>m1.D2.squirrel &lt;-glm(num.RK ~ MedianType,
-                     data = D2.squirrel.com,
-                     family = poisson(link = &quot;log&quot;))
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gVXNlTWV0aG9kKFxcbXV0YXRlXFwpIDogXG4gIG5vIGFwcGxpY2FibGUgbWV0aG9kIGZvciAnbXV0YXRlJyBhcHBsaWVkIHRvIGFuIG9iamVjdCBvZiBjbGFzcyBcXGMoJ2RvdWJsZSdcbiJ9 --&gt;
 </code></pre>
+<p>Error in UseMethod() : no applicable method for ‘mutate’ applied to
+an object of class ‘double’</p>
+<pre><code>
+
+
+&lt;!-- rnb-output-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+
+TO DO: make table that shows totals for number of roadkill for every median type compared against if it was a roadkill point or simulated point
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuI2NvbGxhcHNlKG51bS5SSyB+IE1lZGlhblR5cGUgKVxuI21ha2UgY29tYmluZWQgZGF0YSBmcmFtZSBjYWxsZWQgXFxEMi5zcXVpcnJlbC5jb21cXFxuYGBgXG5gYGAifQ== --&gt;
+
+```r
+```r
+#collapse(num.RK ~ MedianType )
+#make combined data frame called \D2.squirrel.com\</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+TO DO
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxubTEuRDIuc3F1aXJyZWwgPC1nbG0obnVtLlJLIH4gTWVkaWFuVHlwZSxcbiAgICAgICAgICAgICAgICAgICAgIGRhdGEgPSBEMi5zcXVpcnJlbC5jb20sXG4gICAgICAgICAgICAgICAgICAgICBmYW1pbHkgPSBwb2lzc29uKGxpbmsgPSBcXGxvZ1xcKSlcblxuYGBgXG5gYGAifQ== --&gt;
+
+```r
+```r
+m1.D2.squirrel &lt;-glm(num.RK ~ MedianType,
+                     data = D2.squirrel.com,
+                     family = poisson(link = \log\))
+</code></pre>
+<p>```</p>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlByYWN0aWNlIHdpdGggZGF0YXNldHMiDQphdXRob3I6IExvcm5hIEhhd29ydGgNCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQpBZGQgYSBuZXcgY2h1bmsgYnkgY2xpY2tpbmcgdGhlICpJbnNlcnQgQ2h1bmsqIGJ1dHRvbiBvbiB0aGUgdG9vbGJhciBvciBieSBwcmVzc2luZyAqQ3RybCtBbHQrSSouDQpGaXJzdCwgc2V0IHdvcmtpbmcgZGlyZWN0b3J5IGFuZCBsb2FkIGFwcHJvcHJpYXRlIGxpYnJhcmllcy4NCg0KQlJBSU5TVE9STUlORyBOT1RFUw0KZGF0YSBmcmFtZSBoYXMgcmVzcG9uc2UgdmFyaWFibGUgKHJvYWRraWxsKSBhbmQgcG9zc2libGUgcHJlZGljdG9ycyAoTkNMRCwgTkhELCBidWlsZGluZykNCm5vIGVtcHR5IHZhbHVlcyBpbiByb3dzDQoNCndoYXQgaXMgdGhlIG1lZGlhbiB0eXBlIHRlbGxpbmcgeW91IGluIGEgcmFuZG9tIHBvaW50cz8gaG93IHRvIGluY2x1ZGUgcmFuZG9tIA0KIC0tPiBhcmUgdGhleSBjb3JyZWxhdGVkDQoNCmhvdyB0byBtYWtlIGEgbW9kZWwgd2l0aCBvbmx5IHByZXNlbmNlIGRhdGEgKG5vIGFic2VuY2UpDQoNCmBgYHtyIGxvYWQgbGlicmFyaWVzfSANCmtuaXRyOjpvcHRzX2tuaXQkc2V0KHJvb3QuZGlyID0gIkM6L1Jfc3R1ZGlvL1Jlc2VhcmNoL01lZGlhbi1CYXJyaWVycyIpDQpnZXR3ZCgpDQoNCmxpYnJhcnkodGlkeXZlcnNlKQ0KbGlicmFyeShjb25mbGljdGVkKQ0KY29uZmxpY3RfcHJlZmVyKCJzZWxlY3QiLCAiZHBseXIiKQ0KY29uZmxpY3RfcHJlZmVyKCJmaWx0ZXIiLCAiZHBseXIiKQ0KY29uZmxpY3RfcHJlZmVyKCJzdW1tYXJpemUiLCAiZHBseXIiKQ0KP2dyb3VwX2J5DQpgYGANCg0KYGBge3IgcmVhZCBpbiBkYXRhfQ0KRGlzdHJpY3QyLnNxdWlycmVscyA8LSByZWFkLmNzdigiRDJfc3F1aXJyZWxfaGl0cy5jc3YiKQ0KRGlzdHJpY3QyLnJhbmRvbSA8LSByZWFkLmNzdigiRDJfcmFuZG9tX3NpdGVzLmNzdiIpDQpgYGANCg0KDQpNYWtlIHRoZSBkYXRhIGZyYW1lcyBsb29rIGJldGVyIGJ5IG9ubHkgdXNpbmcgbmVjZXNzYXJ5IGRhdGENCmBgYHtyIG1ha2UgbmV3IGRhdGEgZnJhbWVzIHdpdGggc2ltcGxpZmllZCBpbmZvcm1hdGlvbiBmcm9tIGNzdiB9DQpEMi5zcXVpcnJlbC5yb2FkIDwtIHN1YnNldChEaXN0cmljdDIuc3F1aXJyZWxzLCBzZWxlY3Q9YyhuaWQsDQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBhbmltYWwsIA0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNvbmRpdGlvbiwgDQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY3JlYXRlZF9kYSwgDQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgTWVkaWFuVHlwZSwgDQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgU2Vjb25kYXJ5QXR0cmlidXRlLCANCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBNZWRpYW5XaWR0aCwgDQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgUm9hZHNpZGVCYXJyaWVyKSkNCkQyLnJhbmRvbSA8LSBzdWJzZXQoRGlzdHJpY3QyLnJhbmRvbSwgc2VsZWN0PWMoY2lkLA0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBNZWRpYW5UeXBlLA0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBTZWNvbmRhcnlBdHRyaWJ1dGUsIA0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBNZWRpYW5XaWR0aCwgDQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFJvYWRzaWRlQmFycmllcikpDQoNCkQyLnJhbmRvbSA8LSBtdXRhdGUoYW5pbWFsPTApICNIRUxQIG5lZWQgdG8gYWRkIGNvbHVtbiB0byByYW5kb20gcG9pbnRzIHRvIHNob3cgbm8gcm9hZGtpbGwNCmBgYA0KDQoNClRPIERPOiBtYWtlIHRhYmxlIHRoYXQgc2hvd3MgdG90YWxzIGZvciBudW1iZXIgb2Ygcm9hZGtpbGwgZm9yIGV2ZXJ5IG1lZGlhbiB0eXBlIGNvbXBhcmVkIGFnYWluc3QgaWYgaXQgd2FzIGEgcm9hZGtpbGwgcG9pbnQgb3Igc2ltdWxhdGVkIHBvaW50DQpgYGB7ciBvcmdhbml6ZSBkYXRhfQ0KI2NvbGxhcHNlKG51bS5SSyB+IE1lZGlhblR5cGUgKQ0KI21ha2UgY29tYmluZWQgZGF0YSBmcmFtZSBjYWxsZWQgIkQyLnNxdWlycmVsLmNvbSINCmBgYA0KDQpUTyBETw0KYGBge3IgZ2xtIG1vZGVsfQ0KbTEuRDIuc3F1aXJyZWwgPC1nbG0obnVtLlJLIH4gTWVkaWFuVHlwZSwNCiAgICAgICAgICAgICAgICAgICAgIGRhdGEgPSBEMi5zcXVpcnJlbC5jb20sDQogICAgICAgICAgICAgICAgICAgICBmYW1pbHkgPSBwb2lzc29uKGxpbmsgPSAibG9nIikpDQoNCmBgYA0KDQoNCg0K</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUHJhY3RpY2Ugd2l0aCBkYXRhc2V0cyIKYXV0aG9yOiBMb3JuYSBIYXdvcnRoCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KQWRkIGEgbmV3IGNodW5rIGJ5IGNsaWNraW5nIHRoZSAqSW5zZXJ0IENodW5rKiBidXR0b24gb24gdGhlIHRvb2xiYXIgb3IgYnkgcHJlc3NpbmcgKkN0cmwrQWx0K0kqLgpGaXJzdCwgc2V0IHdvcmtpbmcgZGlyZWN0b3J5IGFuZCBsb2FkIGFwcHJvcHJpYXRlIGxpYnJhcmllcy4KCkJSQUlOU1RPUk1JTkcgTk9URVMKZGF0YSBmcmFtZSBoYXMgcmVzcG9uc2UgdmFyaWFibGUgKHJvYWRraWxsKSBhbmQgcG9zc2libGUgcHJlZGljdG9ycyAoTkNMRCwgTkhELCBidWlsZGluZykKbm8gZW1wdHkgdmFsdWVzIGluIHJvd3MKCndoYXQgaXMgdGhlIG1lZGlhbiB0eXBlIHRlbGxpbmcgeW91IGluIGEgcmFuZG9tIHBvaW50cz8gaG93IHRvIGluY2x1ZGUgcmFuZG9tIAogLS0+IGFyZSB0aGV5IGNvcnJlbGF0ZWQKCmhvdyB0byBtYWtlIGEgbW9kZWwgd2l0aCBvbmx5IHByZXNlbmNlIGRhdGEgKG5vIGFic2VuY2UpCgpgYGB7ciBsb2FkIGxpYnJhcmllc30gCmtuaXRyOjpvcHRzX2tuaXQkc2V0KHJvb3QuZGlyID0gIkM6L1Jfc3R1ZGlvL1Jlc2VhcmNoL01lZGlhbi1CYXJyaWVycyIpCmdldHdkKCkKCmxpYnJhcnkodGlkeXZlcnNlKQpsaWJyYXJ5KGNvbmZsaWN0ZWQpCmNvbmZsaWN0X3ByZWZlcigic2VsZWN0IiwgImRwbHlyIikKY29uZmxpY3RfcHJlZmVyKCJmaWx0ZXIiLCAiZHBseXIiKQpjb25mbGljdF9wcmVmZXIoInN1bW1hcml6ZSIsICJkcGx5ciIpCj9ncm91cF9ieQpgYGAKCmBgYHtyIHJlYWQgaW4gZGF0YX0KRGlzdHJpY3QyLnNxdWlycmVscyA8LSByZWFkLmNzdigiRDJfc3F1aXJyZWxfaGl0cy5jc3YiKQpEaXN0cmljdDIucmFuZG9tIDwtIHJlYWQuY3N2KCJEMl9yYW5kb21fc2l0ZXMuY3N2IikKYGBgCgoKTWFrZSB0aGUgZGF0YSBmcmFtZXMgbG9vayBiZXRlciBieSBvbmx5IHVzaW5nIG5lY2Vzc2FyeSBkYXRhCmBgYHtyIG1ha2UgbmV3IGRhdGEgZnJhbWVzIHdpdGggc2ltcGxpZmllZCBpbmZvcm1hdGlvbiBmcm9tIGNzdiB9CkQyLnNxdWlycmVsLnJvYWQgPC0gc3Vic2V0KERpc3RyaWN0Mi5zcXVpcnJlbHMsIHNlbGVjdD1jKG5pZCwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgYW5pbWFsLCAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNvbmRpdGlvbiwgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjcmVhdGVkX2RhLCAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIE1lZGlhblR5cGUsIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgU2Vjb25kYXJ5QXR0cmlidXRlLCAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIE1lZGlhbldpZHRoLCAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFJvYWRzaWRlQmFycmllcikpCkQyLnJhbmRvbSA8LSBzdWJzZXQoRGlzdHJpY3QyLnJhbmRvbSwgc2VsZWN0PWMoY2lkLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIE1lZGlhblR5cGUsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgU2Vjb25kYXJ5QXR0cmlidXRlLCAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBNZWRpYW5XaWR0aCwgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgUm9hZHNpZGVCYXJyaWVyKSkKCkQyLnJhbmRvbSA8LSBtdXRhdGUoYW5pbWFsPTApICNIRUxQIG5lZWQgdG8gYWRkIGNvbHVtbiB0byByYW5kb20gcG9pbnRzIHRvIHNob3cgbm8gcm9hZGtpbGwKCiMjIEVNSUxZLSBtdXRhdGUgbmVlZHMgdG8gYmUgdXNlZGluIGNvbmp1Y3Rpb24gd2l0aCAlPiUuIFlvdSBjYW4gYWRkIG5ldyBjb2x1bW4gdG8gYSBkZiB3aXRob3V0IG11dGF0ZSBsaWtlIHRoaXM6CiMjIEQyLnJhbmRvbSRyb2Fka2lsbF9wYSA8LSAwIAojIyBUaGlzIGFzc2lnbnMgYSB2YWx1ZSBvZiAwIHRvIGEgbmV3IGNvbHVtbiBpbiB0aGUgRDIucmFuZG9tIGNhbGxlZCBhbmltYWwgCiMjIE9SIGlmIHlvdSB3YW50IHRvIHVzZSBtdXRhdGU6IAojIyBEMi5yYW5kb20gPC0gRDIucmFuZG9tICU+JQojIyAgICAgICAgICAgICAgICAgbXV0YXRlKHJvYWRraWxsX3BhID0gMCkKYGBgCgoKVE8gRE86IG1ha2UgdGFibGUgdGhhdCBzaG93cyB0b3RhbHMgZm9yIG51bWJlciBvZiByb2Fka2lsbCBmb3IgZXZlcnkgbWVkaWFuIHR5cGUgY29tcGFyZWQgYWdhaW5zdCBpZiBpdCB3YXMgYSByb2Fka2lsbCBwb2ludCBvciBzaW11bGF0ZWQgcG9pbnQKYGBge3Igb3JnYW5pemUgZGF0YX0KI2NvbGxhcHNlKG51bS5SSyB+IE1lZGlhblR5cGUgKQojbWFrZSBjb21iaW5lZCBkYXRhIGZyYW1lIGNhbGxlZCAiRDIuc3F1aXJyZWwuY29tIgpgYGAKClRPIERPCmBgYHtyIGdsbSBtb2RlbH0KbTEuRDIuc3F1aXJyZWwgPC1nbG0obnVtLlJLIH4gTWVkaWFuVHlwZSwKICAgICAgICAgICAgICAgICAgICAgZGF0YSA9IEQyLnNxdWlycmVsLmNvbSwKICAgICAgICAgICAgICAgICAgICAgZmFtaWx5ID0gcG9pc3NvbihsaW5rID0gImxvZyIpKQoKYGBgCgoKCg==</div>
 
 
 
