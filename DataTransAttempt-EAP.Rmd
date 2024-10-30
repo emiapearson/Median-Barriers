@@ -1,0 +1,56 @@
+---
+title: "Data Transformation Help"
+output: html_notebook
+---
+
+```{r Set wd, read libraries, message = F}
+knitr::opts_knit$set(root.dir = "~/Documents/GitHub/Median-Barriers/")
+
+library(tidyverse)
+```
+
+```{r Read in dataframes}
+random_site <- read.csv("D2_random_sites.csv")
+head(random_site) #View first few entries of df 
+
+roadkill_site <- read.csv("D2_squirrel_hits.csv")
+head(roadkill_site)
+```
+
+```{r Clean dataframes}
+random_site_clean <- random_site %>%
+  #select the columns we wish to keep from the original df
+  select(cid, ROUTE_NUMB, AADT, Latitude, Longitude, MedianType) %>% 
+  #create a new column denoting absence (0) of roadkill bc random_site
+  mutate(roadkill_pa = 0)
+
+head(random_site_clean)
+
+roadkill_site_clean <- roadkill_site %>%
+  select(nid, ROUTE_NUMB, AADT, latitude, longitude, MedianType, animal, scientific) %>%
+  #make column names match random_site_clean otherwise rbind will not work
+  #in rename(new column name = old column name)
+  rename(Latitude = latitude, 
+         Longitude = longitude,
+         cid = nid) %>%
+  #create a new column denoting presence (1) of roadkill bc roadkill site
+  mutate(roadkill_pa = 1)
+
+head(roadkill_site_clean)
+```
+
+```{r Create combined df}
+#Combine dfs using bind_rows. Adds one df below the other matching column names
+site_full <- bind_rows(random_site_clean, roadkill_site_clean)
+head(site_full)
+```
+
+```{r Median type tables}
+#Median type table with only roadkill sites
+table(site_full$MedianType[site_full$roadkill_pa == 1])
+
+#Median type table with all sites
+table(site_full$MedianType)
+
+#There appears to be many different types of medians with multiple descriptions. Is there redundancy? vegetative, gravel == gravel, vegetative? 
+```
